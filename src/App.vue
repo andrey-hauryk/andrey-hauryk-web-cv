@@ -1,13 +1,12 @@
 <template>
   <main class="main">
-    <Header></Header>
-    <!-- <img v-lazy="'./assets/cosmos-background.jpg'" class="background" alt="Background" /> -->
-    <img v-lazy="'./assets/cosmos-background.jpg'" class="background" alt="Background" />
+    <Home></Home>
+    <!-- <img src="./assets/cosmos-background.jpg" class="background" alt="Background" /> -->
   </main>
 </template>
 
 <script setup lang="ts">
-import Header from './components/Header.vue';
+import Home from './pages/Home.vue';
 </script>
 
 <style scoped>
@@ -20,9 +19,8 @@ import Header from './components/Header.vue';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
 }
 </style>
