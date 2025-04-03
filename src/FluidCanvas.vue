@@ -1,0 +1,147 @@
+<template>
+  <div class="gradient-bg" ref="container"></div>
+</template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
+import * as THREE from 'three';
+
+const container = ref<HTMLDivElement | null>(null);
+
+let scene: THREE.Scene;
+let camera: THREE.PerspectiveCamera;
+let renderer: THREE.WebGLRenderer;
+let stars: THREE.Points;
+let starGeo: THREE.BufferGeometry;
+let starPositions: Float32Array;
+let starSizes: Float32Array;
+let starColors: Float32Array;
+
+const starCount = 600;
+const speed = 1;
+
+const animate = () => {
+  requestAnimationFrame(animate);
+
+  const positions = starGeo.attributes.position.array as Float32Array;
+
+  for (let i = 0; i < positions.length; i += 3) {
+    positions[i + 2] += speed; // Двигаем звезды вперед
+
+    if (positions[i + 2] > 300) {
+      positions[i] = Math.random() * 600 - 300; // X
+      positions[i + 1] = Math.random() * 600 - 300; // Y
+      positions[i + 2] = -300; // Сбрасываем звезду в начало
+    }
+  }
+
+  starGeo.attributes.position.needsUpdate = true; // Обновляем геометрию
+
+  renderer.render(scene, camera);
+};
+
+const getRandomColor = () => {
+  const colors = [
+    new THREE.Color(1, 1, 1), // Белый
+    new THREE.Color(0.8, 0.8, 1), // Голубоватый
+    new THREE.Color(1, 0.8, 0.6), // Желтоватый
+    new THREE.Color(1, 0.6, 0.8), // Розоватый
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
+};
+
+const init = () => {
+  if (!container.value) return;
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 5);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.value.appendChild(renderer.domElement);
+
+  starGeo = new THREE.BufferGeometry();
+  starPositions = new Float32Array(starCount * 3);
+  starSizes = new Float32Array(starCount);
+  starColors = new Float32Array(starCount * 3);
+
+  for (let i = 0; i < starCount; i++) {
+    // Случайные координаты
+    starPositions[i * 3] = Math.random() * 600 - 300; // X
+    starPositions[i * 3 + 1] = Math.random() * 600 - 300; // Y
+    starPositions[i * 3 + 2] = Math.random() * 600 - 300; // Z
+
+    // Случайный размер
+    starSizes[i] = Math.random() * 2 + 0.5; // Размер от 0.5 до 2
+
+    // Случайный цвет
+    const color = getRandomColor();
+    starColors[i * 3] = color.r;
+    starColors[i * 3 + 1] = color.g;
+    starColors[i * 3 + 2] = color.b;
+  }
+
+  starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+  starGeo.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3));
+
+  const starsMaterial = new THREE.PointsMaterial({
+    vertexColors: true, // Включаем цвета
+    size: 1,
+    transparent: true,
+    depthWrite: false,
+  });
+
+  stars = new THREE.Points(starGeo, starsMaterial);
+  scene.add(stars);
+
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+  scene.add(ambientLight);
+
+  animate();
+};
+
+const onResize = () => {
+  if (!camera || !renderer) return;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+};
+
+onMounted(() => {
+  init();
+  window.addEventListener('resize', onResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize);
+});
+</script>
+
+<style scoped>
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: linear-gradient(-45deg, #000000, #220033, #000000);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>
