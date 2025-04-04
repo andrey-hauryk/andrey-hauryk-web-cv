@@ -12,7 +12,6 @@ let scene: THREE.Scene;
 let camera: THREE.PerspectiveCamera;
 let renderer: THREE.WebGLRenderer;
 
-// Звёзды
 let stars: THREE.Points;
 const starCount = 600;
 let starGeo: THREE.BufferGeometry;
@@ -21,12 +20,10 @@ let starSizeSpeeds: Float32Array;
 let starDirections: Float32Array;
 let starAccelarations: Float32Array;
 
-// Дым
 const smokeParticles: THREE.Sprite[] = [];
 const smokeGroup = new THREE.Group();
 const smokeTextures: THREE.Texture[] = [];
 
-// Яркие облака
 const brightClouds: THREE.Sprite[] = [];
 
 const initScene = () => {
@@ -44,18 +41,17 @@ const initScene = () => {
 const loadSmokeTextures = () => {
   const loader = new THREE.TextureLoader();
   for (let i = 1; i <= 5; i++) {
-    const filename = i < 10 ? `/smoke_0${i}.png` : `/smoke_${i}.png`;
+    const filename = i < 10 ? `/andrey-hauryk-web-cv/smoke_0${i}.png` : `/andrey-hauryk-web-cv/smoke_${i}.png`;
     smokeTextures.push(loader.load(filename));
   }
 };
 
 const createSmoke = () => {
-  const maxRadius = 40; // Увеличиваем радиус
+  const maxRadius = 40;
 
-  for (let i = 0; i < 200; i++) { // Увеличиваем количество частиц
+  for (let i = 0; i < 200; i++) {
     const texture = smokeTextures[Math.floor(Math.random() * smokeTextures.length)];
 
-    // Выбираем случайные синие и фиолетовые оттенки для дымки
     const color = new THREE.Color(
       `hsl(${200 + Math.random() * 60}, 100%, ${40 + Math.random() * 20}%)`
     );
@@ -64,18 +60,16 @@ const createSmoke = () => {
       map: texture,
       color: color,
       transparent: true,
-      opacity: 0.15 + Math.random() * 0.35, // Меняем opacity
+      opacity: 0.15 + Math.random() * 0.35,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      emissive: color, // Добавляем свечение
-      emissiveIntensity: 0.5 + Math.random() * 0.5, // Свечение с случайной интенсивностью
     });
 
     const sprite = new THREE.Sprite(material);
 
     const radius = Math.random() * maxRadius;
     const angle = Math.random() * Math.PI * 2;
-    const z = (Math.random() - 0.5) * 20; // Увеличиваем диапазон Z
+    const z = (Math.random() - 0.5) * 20; 
 
     sprite.position.set(
       Math.cos(angle) * radius,
@@ -83,7 +77,7 @@ const createSmoke = () => {
       z
     );
 
-    const scale = 15 + Math.random() * 10; // Увеличиваем масштаб частиц
+    const scale = 15 + Math.random() * 10;
     sprite.scale.set(scale, scale, 1);
     sprite.material.rotation = Math.random() * Math.PI * 2;
 
@@ -113,7 +107,7 @@ const createStars = () => {
   starDirections = new Float32Array(starCount);
   starAccelarations = new Float32Array(starCount);
 
-  const starTexture = new THREE.TextureLoader().load('/star_08.png');
+  const starTexture = new THREE.TextureLoader().load('/andrey-hauryk-web-cv/star_08.png');
 
   for (let i = 0; i < starCount; i++) {
     starPositions[i * 3] = Math.random() * 600 - 300;
@@ -150,35 +144,30 @@ const createStars = () => {
   scene.add(stars);
 };
 
-// Создание ярких облаков
 const createBrightClouds = () => {
   const cloudColors = [
-    new THREE.Color(1, 0, 0), // Красный
-    new THREE.Color(1, 0.5, 0), // Оранжевый
-    new THREE.Color(0, 0, 1), // Синий
-    new THREE.Color(0, 1, 0) // Зелёный
+    new THREE.Color(1, 0, 0),
+    new THREE.Color(1, 0.5, 0),
+    new THREE.Color(0, 0, 1),
+    new THREE.Color(0, 1, 0)
   ];
 
-  for (let i = 0; i < 5; i++) { // Устанавливаем 5 случайных облаков
+  for (let i = 0; i < 5; i++) {
     const texture = smokeTextures[Math.floor(Math.random() * smokeTextures.length)];
 
-    // Выбираем случайный яркий цвет
     const color = cloudColors[Math.floor(Math.random() * cloudColors.length)];
 
     const material = new THREE.SpriteMaterial({
       map: texture,
       color: color,
       transparent: true,
-      opacity: 0.3 + Math.random() * 0.5, // Начальная прозрачность
+      opacity: 0.3 + Math.random() * 0.5,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      emissive: color,
-      emissiveIntensity: 1.5 + Math.random() * 0.5,
     });
 
     const sprite = new THREE.Sprite(material);
 
-    // Задаём случайную позицию облака
     const radius = Math.random() * 100;
     const angle = Math.random() * Math.PI * 2;
     const z = (Math.random() - 0.5) * 50;
@@ -193,29 +182,23 @@ const createBrightClouds = () => {
     sprite.scale.set(scale, scale, 1);
     sprite.material.rotation = Math.random() * Math.PI * 2;
 
-    // Добавляем облако в группу
     brightClouds.push(sprite);
     scene.add(sprite);
   }
 };
 
-// Анимация ярких облаков
 const animateBrightClouds = () => {
-  const time = Date.now() * 0.001;
-
   brightClouds.forEach((sprite) => {
     const speed = 0.1 + Math.random() * 0.1;
     sprite.position.z += speed;
 
-    // Плавно уменьшаем прозрачность облаков, чтобы они исчезали
     sprite.material.opacity -= 0.002;
 
-    // Если облако слишком далеко или исчезло, заменяем его
     if (sprite.position.z > 50 || sprite.material.opacity <= 0) {
       sprite.position.z = -50;
       sprite.position.x = Math.random() * 200 - 100;
       sprite.position.y = Math.random() * 200 - 100;
-      sprite.material.opacity = 0.3 + Math.random() * 0.5; // Восстанавливаем начальную прозрачность
+      sprite.material.opacity = 0.3 + Math.random() * 0.5;
     }
   });
 };
@@ -227,7 +210,6 @@ const animate = () => {
   const positions = starGeo.attributes.position.array as Float32Array;
   const sizes = starGeo.attributes.size.array as Float32Array;
 
-  // Анимация звёзд
   for (let i = 0; i < starCount; i++) {
     positions[i * 3 + 2] += starSpeeds[i];
 
@@ -248,13 +230,11 @@ const animate = () => {
   starGeo.attributes.position.needsUpdate = true;
   starGeo.attributes.size.needsUpdate = true;
 
-  // Анимация дыма
   smokeGroup.rotation.z += 0.0008;
   smokeParticles.forEach((sprite, i) => {
     const s = 10 + Math.sin(time + i) * 1.5;
     sprite.scale.set(s, s, 1);
 
-    // Смещаем частицы вдоль оси Z
     sprite.position.z += 0.05 + Math.random() * 0.1;
 
     if (sprite.position.z > 50) {
@@ -264,7 +244,7 @@ const animate = () => {
     }
   });
 
-  animateBrightClouds(); // Добавляем анимацию облаков
+  animateBrightClouds();
 
   renderer.render(scene, camera);
 };
@@ -281,7 +261,7 @@ onMounted(() => {
   loadSmokeTextures();
   createSmoke();
   createStars();
-  createBrightClouds(); // Создаём яркие облака
+  createBrightClouds();
   animate();
   window.addEventListener('resize', onResize);
 });

@@ -13,12 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import Header from '../components/Header.vue';
+// import Header from '../components/Header.vue';
 import ButtonUI from '../components/ButtonUI.vue';
 
-const handleClick = () => {
-  window.open('/resume.pdf', '_blank');
-}
+// const handleClick = () => {
+//   window.open('/resume.pdf', '_blank');
+// }
 </script>
 
 <style scoped>
