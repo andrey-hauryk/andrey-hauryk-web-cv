@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  background-color: black;
+  max-height: 100vh;
+
   /* font-family: 'MyCustomOTF', sans-serif; */
   /* background-color: black; */
 }

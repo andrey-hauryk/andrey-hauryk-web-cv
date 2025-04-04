@@ -1,113 +1,95 @@
 <template>
-  <!-- <Header></Header> -->
-  <section class="content">
-    <div class="profile-container">
-      <div class="avatar">
-        <img src="../assets//avatar.jpeg" alt="Andrey Hauryk Avatar">
+  <section class="profile">
+    <div class="profile__container">
+      <h1 class="profile__name">Andrey Hauryk</h1>
+      <p class="profile__description">Software Engineer experienced in Full-Stack Web</p>
+      <div class="profile__avatar" role="img" aria-label="Andrey Hauryk Avatar">
+        <img src="../assets/avatar.jpeg" alt="Andrey Hauryk avatar" />
       </div>
-      <h1 class="name">Andrey Hauryk</h1>
-      <p class="description">Software Engineer experienced in Full-Stack Web</p>
-      <ButtonUI></ButtonUI>
+      <ButtonUI class="profile__button" />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// import Header from '../components/Header.vue';
 import ButtonUI from '../components/ButtonUI.vue';
-
-// const handleClick = () => {
-//   window.open('/resume.pdf', '_blank');
-// }
 </script>
 
-<style scoped>
-.content {
+<style scoped lang="scss">
+@use 'sass:math';
+
+@mixin fadeInUp($duration: 1.5s, $delay: 0s) {
+  opacity: 0;
+  animation: fadeInUp $duration ease-in-out $delay forwards;
+}
+
+.profile {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 6rem;
   width: 100%;
-  height: 100%;
-  opacity: 0; /* Начальная скрытость */
-  animation: fadeIn 1s ease-in-out forwards; /* Плавное появление */
+  animation: fadeIn 1s ease-in-out forwards;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    @include fadeInUp(1.5s, 0.2s);
+  }
+
+  &__avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.3);
+    @include fadeInUp(1.5s, 0.4s);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__name {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    @include fadeInUp(1.5s, 0.6s);
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    @include fadeInUp(1.5s, 0.8s);
+  }
+
+  &__button {
+    @include fadeInUp(1.5s, 1s);
+  }
 }
 
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  opacity: 0; /* Начальная скрытость */
-  animation: fadeInUp 1.5s ease-in-out forwards; /* Плавное появление и подъём */
-}
-
-.avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 20px;
-  border: 4px solid #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.3);
-  opacity: 0; /* Начальная скрытость */
-  animation: fadeInUp 1.5s ease-in-out 0.5s forwards; /* Плавное появление с задержкой */
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.name {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: white;
-  opacity: 0; /* Начальная скрытость */
-  animation: fadeInUp 1.5s ease-in-out 1s forwards; /* Плавное появление с задержкой */
-}
-
-.description {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  color: white;
-  opacity: 0; /* Начальная скрытость */
-  animation: fadeInUp 1.5s ease-in-out 1.2s forwards; /* Плавное появление с задержкой */
-}
-
-.resume-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  opacity: 0; /* Начальная скрытость */
-  animation: fadeInUp 1.5s ease-in-out 1.4s forwards; /* Плавное появление с задержкой */
-}
-
-.resume-button .icon {
-  margin-left: 10px;
-}
-
-/* Анимации */
 @keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
 
 @keyframes fadeInUp {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(20px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }

@@ -1,5 +1,42 @@
-# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# 💼 Andrey Hauryk — Web CV
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+A simple single-page portfolio built with **Vue 3 + TypeScript**, using **composable architecture** and minimalistic structure. Includes timeline-based experience, project showcase, and smooth transitions. Visual effects are powered by **Three.js**.
+
+## 🔧 Tech Stack
+
+- Vue 3 + Composition API
+- TypeScript
+- Three.js
+- Vite
+- GitHub Pages
+
+## 📁 Project Structure
+
+```
+src/
+├── components/      // Reusable UI components
+├── composables/     // App logic (e.g. useActiveSection)
+├── data/            // Static content (projects, timeline)
+├── sections/        // Page sections (Home, Experience, Projects)
+├── App.vue
+└── main.ts
+```
+
+## 🚀 Setup & Run
+
+```bash
+npm install       # Install dependencies
+npm run dev       # Start dev server
+npm run build     # Build for production
+npm run preview   # Preview production build
+npm run deploy    # Deploy to GitHub Pages
+```
+
+## 🔗 Live
+
+[andrey-hauryk.github.io/andrey-hauryk-web-cv](https://andrey-hauryk.github.io/andrey-hauryk-web-cv)
+
+---
+
+MIT License © Andrey Hauryk

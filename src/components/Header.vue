@@ -1,18 +1,26 @@
 <template>
   <header class="header">
-    <div class="header__navigation"></div>
+    <nav class="header__navigation" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li class="nav-link">Portfolio</li>
+        <li class="nav-link">About Me</li>
+        <li class="nav-link">Get in Touch</li>
+      </ul>
+    </nav>
+
     <div class="header__title">
-      <h1 class="cover-text header__title-text">Andrey Hauryk</h1>
+      <h1 class="header__title-text">Portfolio</h1>
     </div>
-    <div class="header__links">
-      <a href="https://github.com/your-github" target="_blank" class="social-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Octicons-mark-github.svg" alt="GitHub" class="social-icon" />
+
+    <div class="header__links" aria-label="Social Media Links">
+      <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+        <img src="../assets/github.svg" alt="GitHub icon" class="social-icon" />
       </a>
-      <a href="mailto:your-email@example.com" class="social-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Google_Contacts_logo.png" alt="Gmail" class="social-icon" />
+      <a href="mailto:your-email@example.com" class="social-link" aria-label="Email">
+        <img src="../assets/gmail.svg" alt="Gmail icon" class="social-icon" />
       </a>
-      <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" class="social-link">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2023.png" alt="LinkedIn" class="social-icon" />
+      <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+        <img src="../assets/linkedin.svg" alt="LinkedIn icon" class="social-icon" />
       </a>
     </div>
   </header>
@@ -20,60 +28,79 @@
 
 <script setup lang="ts"></script>
 
-<style scoped>
+<style scoped lang="scss">
 .header {
   background-color: transparent;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid white;
-  padding: 10px;
+  padding: 3rem 6rem 1rem 6rem;
+  flex-wrap: wrap;
+
+  &__navigation {
+    width: 30%;
+  }
+
+  &__title {
+    text-align: center;
+    width: 30%;
+    &-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.5),
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__links {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
 }
 
-.header__title {
-  font-size: 1rem;
-  width: 30%;
-  text-align: center;
+.nav {
+  &-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: #00ffff;
+      outline: none;
+    }
+  }
 }
 
-.header__title-text {
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  text-transform: uppercase;
-  position: relative;
+.social {
+  &-link {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+  }
 
-  text-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.5),
-    0 1px 3px rgba(0, 0, 0, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.header__navigation {
-  width: 30%;
-}
-
-.header__links {
-  width: 30%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.social-link {
-  margin-left: 15px;
-  display: inline-block;
-}
-
-.social-icon {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s;
-}
-
-.social-icon:hover {
-  transform: scale(1.1);
+  &-icon {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 </style>

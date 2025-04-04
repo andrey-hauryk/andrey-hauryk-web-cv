@@ -1,5 +1,6 @@
 <template>
   <main class="main">
+    <Header></Header>
     <Home></Home>
     <SmokeCanvas></SmokeCanvas>
   </main>
@@ -7,6 +8,7 @@
 
 <script setup lang="ts">
 import Home from './pages/Home.vue';
+import Header from './components/Header.vue';
 import SmokeCanvas from './SmokeCanvas.vue';
 </script>
 

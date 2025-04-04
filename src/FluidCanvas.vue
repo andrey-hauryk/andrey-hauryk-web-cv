@@ -148,10 +148,32 @@ onUnmounted(() => {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: linear-gradient(-45deg, #000000, #1e0033, #3f0066, #330066, #110022);
-  background-size: 300% 300%;
-  animation: gradientAnimation 120s ease infinite;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  animation: subtleGradientShift 20s ease-in-out infinite;
+  background-blend-mode: screen;
 }
 
-
+@keyframes subtleGradientShift {
+  0% {
+    background: radial-gradient(circle at 20% 20%, rgba(0, 30, 60, 0.1), rgba(0, 0, 0, 1)),
+                linear-gradient(-45deg, rgba(20, 0, 50, 0.2), rgba(0, 0, 0, 0.9));
+  }
+  25% {
+    background: radial-gradient(circle at 80% 20%, rgba(60, 0, 100, 0.15), rgba(0, 0, 0, 1)),
+                linear-gradient(45deg, rgba(0, 50, 100, 0.2), rgba(0, 0, 0, 0.9));
+  }
+  50% {
+    background: radial-gradient(circle at 50% 80%, rgba(0, 100, 150, 0.1), rgba(0, 0, 0, 1)),
+                linear-gradient(-135deg, rgba(100, 0, 150, 0.15), rgba(0, 0, 0, 0.9));
+  }
+  75% {
+    background: radial-gradient(circle at 10% 80%, rgba(50, 0, 100, 0.2), rgba(0, 0, 0, 1)),
+                linear-gradient(135deg, rgba(0, 30, 80, 0.2), rgba(0, 0, 0, 0.9));
+  }
+  100% {
+    background: radial-gradient(circle at 20% 20%, rgba(0, 30, 60, 0.1), rgba(0, 0, 0, 1)),
+                linear-gradient(-45deg, rgba(20, 0, 50, 0.2), rgba(0, 0, 0, 0.9));
+  }
+}
 </style>
+
