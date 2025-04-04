@@ -1,9 +1,20 @@
 <template>
   <header class="header">
-    <div class="left">Andrey Hauryk</div>
-    <nav class="right">
-      <button class="nav-button">Home</button>
-    </nav>
+    <div class="header__navigation"></div>
+    <div class="header__title">
+      <h1 class="cover-text header__title-text">Andrey Hauryk</h1>
+    </div>
+    <div class="header__links">
+      <a href="https://github.com/your-github" target="_blank" class="social-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Octicons-mark-github.svg" alt="GitHub" class="social-icon" />
+      </a>
+      <a href="mailto:your-email@example.com" class="social-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Google_Contacts_logo.png" alt="Gmail" class="social-icon" />
+      </a>
+      <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" class="social-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2023.png" alt="LinkedIn" class="social-icon" />
+      </a>
+    </div>
   </header>
 </template>
 
@@ -11,34 +22,58 @@
 
 <style scoped>
 .header {
-  background-color: #333; /* Темный фон */
+  background-color: transparent;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  border-bottom: 2px solid white;
+  padding: 10px;
 }
 
-.left {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.right {
-  display: flex;
-}
-
-.nav-button {
-  background-color: transparent;
-  border: none;
-  color: white;
+.header__title {
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  margin-left: 1rem;
-  cursor: pointer;
+  width: 30%;
+  text-align: center;
 }
 
-.nav-button:hover {
-  background-color: #555; /* Затемнение при наведении */
+.header__title-text {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  text-transform: uppercase;
+  position: relative;
+
+  text-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.5),
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.header__navigation {
+  width: 30%;
+}
+
+.header__links {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.social-link {
+  margin-left: 15px;
+  display: inline-block;
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
 }
 </style>

@@ -1,4 +1,12 @@
 body {
   margin: 0;
+  /* font-family: 'MyCustomOTF', sans-serif; */
   /* background-color: black; */
 }
+/* 
+@font-face {
+  font-family: 'MyCustomOTF';
+  src: url('./assets/fonts/CrozierBlackCF-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+} */

@@ -16,26 +16,37 @@ let starGeo: THREE.BufferGeometry;
 let starPositions: Float32Array;
 let starSizes: Float32Array;
 let starColors: Float32Array;
+let starSpeeds: Float32Array; // Массив для хранения скорости каждой звезды
+let starSizeSpeeds: Float32Array; // Массив для хранения скорости изменения размеров звезд
 
 const starCount = 600;
-const speed = 1;
 
 const animate = () => {
   requestAnimationFrame(animate);
 
   const positions = starGeo.attributes.position.array as Float32Array;
+  const sizes = starGeo.attributes.size.array as Float32Array;
 
   for (let i = 0; i < positions.length; i += 3) {
-    positions[i + 2] += speed; // Двигаем звезды вперед
+    positions[i + 2] += starSpeeds[i / 3]; // Двигаем звезды с разной скоростью
 
     if (positions[i + 2] > 300) {
       positions[i] = Math.random() * 600 - 300; // X
       positions[i + 1] = Math.random() * 600 - 300; // Y
       positions[i + 2] = -300; // Сбрасываем звезду в начало
     }
+
+    // Изменяем размер звезды
+    sizes[i / 3] += starSizeSpeeds[i / 3];
+
+    // Если размер звезды выходит за пределы, инвертируем скорость изменения
+    if (sizes[i / 3] > 4 || sizes[i / 3] < 0.2) {
+      starSizeSpeeds[i / 3] = -starSizeSpeeds[i / 3];
+    }
   }
 
   starGeo.attributes.position.needsUpdate = true; // Обновляем геометрию
+  starGeo.attributes.size.needsUpdate = true; // Обновляем размеры
 
   renderer.render(scene, camera);
 };
@@ -67,6 +78,8 @@ const init = () => {
   starPositions = new Float32Array(starCount * 3);
   starSizes = new Float32Array(starCount);
   starColors = new Float32Array(starCount * 3);
+  starSpeeds = new Float32Array(starCount); // Инициализация массива скоростей
+  starSizeSpeeds = new Float32Array(starCount); // Инициализация массива скорости изменения размеров
 
   for (let i = 0; i < starCount; i++) {
     // Случайные координаты
@@ -75,17 +88,24 @@ const init = () => {
     starPositions[i * 3 + 2] = Math.random() * 600 - 300; // Z
 
     // Случайный размер
-    starSizes[i] = Math.random() * 2 + 0.5; // Размер от 0.5 до 2
+    starSizes[i] = Math.random() * 3.8 + 0.2; // Размер от 0.2 до 4
 
     // Случайный цвет
     const color = getRandomColor();
     starColors[i * 3] = color.r;
     starColors[i * 3 + 1] = color.g;
     starColors[i * 3 + 2] = color.b;
+
+    // Случайная скорость движения
+    starSpeeds[i] = Math.random() * 0.5 + 0.5; // Скорость от 0.5 до 1
+
+    // Случайная скорость изменения размеров
+    starSizeSpeeds[i] = (Math.random() * 0.4 + 0.2) * (Math.random() < 0.5 ? 1 : -1); // От -0.2 до 0.2
   }
 
   starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
   starGeo.setAttribute('color', new THREE.Float32BufferAttribute(starColors, 3));
+  starGeo.setAttribute('size', new THREE.Float32BufferAttribute(starSizes, 1));
 
   const starsMaterial = new THREE.PointsMaterial({
     vertexColors: true, // Включаем цвета
@@ -128,20 +148,10 @@ onUnmounted(() => {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: linear-gradient(-45deg, #000000, #220033, #000000);
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
+  background: linear-gradient(-45deg, #000000, #1e0033, #3f0066, #330066, #110022);
+  background-size: 300% 300%;
+  animation: gradientAnimation 120s ease infinite;
 }
 
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+
 </style>
