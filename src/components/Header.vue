@@ -2,14 +2,14 @@
   <header class="header">
     <nav class="header__navigation" aria-label="Main Navigation">
       <ul class="nav-list">
-        <li class="nav-link">Portfolio</li>
-        <li class="nav-link">About Me</li>
-        <li class="nav-link">Get in Touch</li>
+        <li class="nav-link" @click="handleSetActiveSection('portfolio')">Portfolio</li>
+        <li class="nav-link" @click="handleSetActiveSection('experience')">Experience</li>
+        <li class="nav-link" @click="handleSetActiveSection('projects')">Projects</li>
       </ul>
     </nav>
 
     <div class="header__title">
-      <h1 class="header__title-text">Portfolio</h1>
+      <h1 class="header__title-text">{{activeSection}}</h1>
     </div>
 
     <div class="header__links" aria-label="Social Media Links">
@@ -26,7 +26,20 @@
   </header>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  activeSection: string;
+}>();
+
+const emit = defineEmits<{
+  (event: 'setActiveSection', section: string): void;
+}>();
+
+const handleSetActiveSection = (section: string) => {
+  emit('setActiveSection', section);
+}
+
+</script>
 
 <style scoped lang="scss">
 .header {
@@ -35,8 +48,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem 6rem 1rem 6rem;
   flex-wrap: wrap;
+  height: 10%;
 
   &__navigation {
     width: 30%;
