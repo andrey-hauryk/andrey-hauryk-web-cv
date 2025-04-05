@@ -2,9 +2,9 @@
   <header class="header">
     <nav class="header__navigation" aria-label="Main Navigation">
       <ul class="nav-list">
-        <li class="nav-link" @click="handleSetActiveSection('portfolio')">Portfolio</li>
-        <li class="nav-link" @click="handleSetActiveSection('experience')">Experience</li>
-        <li class="nav-link" @click="handleSetActiveSection('projects')">Projects</li>
+        <li class="nav-link" @click="handleSetActiveSection('portfolio')">{{$t('message.portfolio')}}</li>
+        <li class="nav-link" @click="handleSetActiveSection('experience')">{{$t('message.experience')}}</li>
+        <li class="nav-link" @click="handleSetActiveSection('projects')">{{$t('message.projects')}}</li>
       </ul>
     </nav>
 

@@ -1,4 +1,5 @@
 <template>
+  <SectionLayout>
   <div class="relative w-full h-screen bg-black overflow-hidden">
     <canvas ref="canvas" class="absolute inset-0"></canvas>
     <div
@@ -17,10 +18,13 @@
       {{ event.title }} ({{ event.year }})
     </div>
   </div>
+  </SectionLayout>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive } from 'vue';
+import SectionLayout from '../layouts/SectionLayout.vue';
+
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const hoveredIndex = ref<number | null>(null)

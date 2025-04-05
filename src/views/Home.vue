@@ -1,5 +1,5 @@
 <template>
-  <section class="profile">
+  <SectionLayout>
     <div class="profile__container">
       <h1 class="profile__name">Andrey Hauryk</h1>
       <p class="profile__description">Software Engineer experienced in Full-Stack Web</p>
@@ -8,11 +8,12 @@
       </div>
       <ButtonUI class="profile__button" />
     </div>
-  </section>
+  </SectionLayout>
 </template>
 
 <script setup lang="ts">
 import ButtonUI from '../components/ButtonUI.vue';
+import SectionLayout from '../layouts/SectionLayout.vue';
 </script>
 
 <style scoped lang="scss">
