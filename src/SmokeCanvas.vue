@@ -13,7 +13,7 @@ let camera: THREE.PerspectiveCamera;
 let renderer: THREE.WebGLRenderer;
 
 let stars: THREE.Points;
-const starCount = 600;
+const starCount = 300;
 let starGeo: THREE.BufferGeometry;
 let starSpeeds: Float32Array;
 let starSizeSpeeds: Float32Array;
@@ -49,7 +49,7 @@ const loadSmokeTextures = () => {
 const createSmoke = () => {
   const maxRadius = 40;
 
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 20; i++) {
     const texture = smokeTextures[Math.floor(Math.random() * smokeTextures.length)];
 
     const color = new THREE.Color(
@@ -89,11 +89,10 @@ const createSmoke = () => {
 };
 
 const getRandomColor = () => {
+  // Оставляем только синий и фиолетовый цвета
   const colors = [
-    new THREE.Color(1, 1, 1),
-    new THREE.Color(0.8, 0.8, 1),
-    new THREE.Color(1, 0.8, 0.6),
-    new THREE.Color(1, 0.6, 0.8),
+    new THREE.Color(0.8, 0.8, 1), // Синий
+    new THREE.Color(0.5, 0.0, 1), // Фиолетовый
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 };
@@ -146,10 +145,8 @@ const createStars = () => {
 
 const createBrightClouds = () => {
   const cloudColors = [
-    new THREE.Color(1, 0, 0),
-    new THREE.Color(1, 0.5, 0),
-    new THREE.Color(0, 0, 1),
-    new THREE.Color(0, 1, 0)
+    new THREE.Color(0.2, 0.0, 1), // Синий
+    new THREE.Color(0.5, 0.0, 1), // Фиолетовый
   ];
 
   for (let i = 0; i < 5; i++) {

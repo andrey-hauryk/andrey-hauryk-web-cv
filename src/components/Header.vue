@@ -43,6 +43,10 @@ const handleSetActiveSection = (section: string) => {
 
 <style scoped lang="scss">
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: transparent;
   color: white;
   display: flex;
@@ -50,6 +54,7 @@ const handleSetActiveSection = (section: string) => {
   align-items: center;
   flex-wrap: wrap;
   height: 10%;
+  z-index: 1000; /* Чтобы хедер всегда был поверх других элементов */
 
   &__navigation {
     width: 30%;

@@ -1,7 +1,8 @@
 <template>
   <main class="main">
     <div class="smoke-wrapper">
-      <SmokeCanvas />
+      <!-- <SmokeCanvas /> -->
+       <SpaceScene />
     </div>
 
     <Header 
@@ -16,6 +17,7 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue';
 import SmokeCanvas from '../SmokeCanvas.vue';
+import SpaceScene from '../SpaceScene.vue';
 
 
 defineProps<{
