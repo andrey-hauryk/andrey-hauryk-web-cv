@@ -1,7 +1,7 @@
 import { createI18n } from 'vue-i18n';
 
 const messages = {
-  en: {
+  'en-US': {
     message: {
       portfolio: 'Portfolio',
       experience: 'Experience',
@@ -9,7 +9,6 @@ const messages = {
       resume: 'Resume',
       name: 'Andrey Hauryk',
       description: 'Software Engineer experienced in Full-Stack Web',
-      
     },
   },
   ru: {
@@ -24,13 +23,10 @@ const messages = {
   },
 };
 
-
-const i18n = createI18n<{
-  message: Record<string, string>;
-}>({
-  locale: 'en',
+const i18n = createI18n({
+  locale: 'en-US',
   legacy: false,
-  messages,
+  messages: messages as { [key: string]: { message: Record<string, string> } },
 });
 
 export default i18n;
