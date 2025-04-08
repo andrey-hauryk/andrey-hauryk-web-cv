@@ -6,6 +6,10 @@ const messages = {
       portfolio: 'Portfolio',
       experience: 'Experience',
       projects: 'Projects',
+      resume: 'Resume',
+      name: 'Andrey Hauryk',
+      description: 'Software Engineer experienced in Full-Stack Web',
+      
     },
   },
   ru: {
@@ -13,6 +17,9 @@ const messages = {
       portfolio: 'Портфолио',
       experience: 'Опыт',
       projects: 'Проекты',
+      resume: 'Резюме',
+      name: 'Андрей Гаврик',
+      description: 'Инженер-программист с опытом работы в Full-Stack Web',
     },
   },
 };

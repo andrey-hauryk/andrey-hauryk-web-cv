@@ -1,35 +1,32 @@
 <template>
-  <div class="button">Resume</div>
+  <div class="button">{{$t('message.resume')}}</div>
 </template>
 
-<script setup lang="ts">
-// Здесь можно добавить логику если нужно
-</script>
+<script setup lang="ts"></script>
 
-<style scoped>
+<style scoped lang="scss">
 .button {
-  width: 80%; /* Адаптивная ширина */
-  max-width: 250px; /* Максимальная ширина */
+  width: 80%;
+  max-width: 250px;
   height: 50px;
-  background: black;
+  background: transparent;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: white;
-  font-size: 1rem; /* Размер шрифта адаптируется */
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Добавлено тень */
+  box-shadow: 0 4px 6px rgba($color-secondary, 0.3);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные переходы */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Анимация границ при наведении */
 .button:hover {
-  transform: scale(1.05); /* Увеличение кнопки при наведении */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Усиление тени */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba($color-secondary, 0.4);
 }
 
 .button:before,
@@ -38,25 +35,26 @@
   position: absolute;
   width: 0;
   height: 0;
-  border: 2px solid transparent;
-  transition: all 0.5s ease; /* Плавная анимация */
+  border: 1px solid $color-secondary;
+  transition: all 0.5s ease;
 }
 
 .button:before {
   top: 0;
   left: 0;
-  border-top-color: white;
-  border-right-color: white;
+  width: 45%;
+  border-top-color: $color-secondary;
+  border-right-color: $color-secondary;
 }
 
 .button:after {
   bottom: 0;
   right: 0;
-  border-bottom-color: white;
-  border-left-color: white;
+  width: 45%;
+  border-bottom-color: $color-secondary;
+  border-left-color: $color-secondary;
 }
 
-/* Анимация границ при наведении */
 .button:hover:before,
 .button:hover:after {
   width: 100%;
@@ -105,7 +103,7 @@
   }
   100% {
     width: 100%;
-    height: 100%;
+    height: 70%;
     opacity: 1;
   }
 }

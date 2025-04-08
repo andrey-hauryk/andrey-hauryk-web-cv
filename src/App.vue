@@ -16,7 +16,7 @@ import Projects from './views/Projects.vue';
 import Experience from './views/Experience.vue';
 import { useActiveSection } from './composables/useActiveSection';
 import type {Section} from './types/activeSectionTypes';
-import {computed} from 'vue'
+import {computed} from 'vue';
 
 const { activeSection, setActiveSection } = useActiveSection();
 
@@ -38,9 +38,9 @@ const activeComponent = computed(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .text {
-  color: white;
+  color: $color-primary;
 }
 
 .main {

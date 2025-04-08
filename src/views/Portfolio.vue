@@ -1,8 +1,8 @@
 <template>
   <SectionLayout>
     <div class="profile__container">
-      <h1 class="profile__name">Andrey Hauryk</h1>
-      <p class="profile__description">Software Engineer experienced in Full-Stack Web</p>
+      <h1 class="profile__name">{{$t("message.name")}}</h1>
+      <p class="profile__description">{{$t('message.description')}}</p>
       <div class="profile__avatar" role="img" aria-label="Andrey Hauryk Avatar">
         <img src="../assets/avatar.jpeg" alt="Andrey Hauryk avatar" />
       </div>
@@ -17,9 +17,8 @@ import SectionLayout from '../layouts/SectionLayout.vue';
 </script>
 
 <style scoped lang="scss">
-@use 'sass:math';
 
-@mixin fadeInUp($duration: 0.3s, $delay: 0s) {
+@mixin fadeInUp($duration: 0.01s, $delay: 0s) {
   opacity: 0;
   animation: fadeInUp $duration ease-in-out $delay forwards;
 }
@@ -27,7 +26,6 @@ import SectionLayout from '../layouts/SectionLayout.vue';
 .profile {
   display: flex;
   justify-content: center;
-  margin-top: 6rem;
   width: 100%;
   animation: fadeIn 1s ease-in-out forwards;
 

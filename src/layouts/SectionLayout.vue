@@ -7,22 +7,22 @@
 </template>
 
 <style scoped lang="scss">
-
 .section {
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &__content {
-    width: 60%;
-    animation: fadeIn 1s ease-in-out;
+    width: $card-content-size;
+    height: 50%;
+    animation: fadeIn $card-animation-duration ease-in-out;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: box-shadow $card-animation-duration ease-in-out, transform $card-animation-duration ease-in-out;
 
     &:hover {
-      box-shadow: 0 8px 40px rgba(0, 255, 255, 0.5);
+      box-shadow: 0 8px 40px rgba($color-secondary, 0.3);
       transform: translateY(-10px);
     }
   }

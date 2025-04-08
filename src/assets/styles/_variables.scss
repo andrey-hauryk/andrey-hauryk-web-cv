@@ -1,1 +1,25 @@
-$test-var: red;
+//colors
+$color-primary: #ffffff;
+$color-secondary: #1E90FF;
+$background-color: #000000;
+
+$card-content-size: 60%;
+$card-animation-duration: 0.3s;
+
+// $font-primary: 'Arial', sans-serif;
+
+// Размеры
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-sm: 14px;
+$line-height: 1.5;
+
+// Отступы
+$spacing-xs: 8px;
+$spacing-sm: 16px;
+$spacing-md: 24px;
+$spacing-lg: 32px;
+
+// Границы
+$border-radius: 8px;
+$border-width: 1px;

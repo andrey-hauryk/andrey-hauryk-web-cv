@@ -11,7 +11,7 @@ const spaceScene = ref<HTMLDivElement | null>(null);
 useSpaceScene(spaceScene);
 </script>
 
-<style>
+<style scoped lang="scss">
 .space-scene {
   position: fixed;
   top: 0;
@@ -20,7 +20,7 @@ useSpaceScene(spaceScene);
   height: 100vh;
   overflow: hidden;
   z-index: 0;
-  background-color: black;
+  background-color: $background-color;
 }
 canvas {
   display: block;
