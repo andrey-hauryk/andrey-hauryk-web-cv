@@ -1,7 +1,6 @@
 <template>
   <main class="main">
     <div class="smoke-wrapper">
-      <!-- <SmokeCanvas /> -->
        <SpaceScene />
     </div>
 
@@ -16,19 +15,18 @@
 
 <script setup lang="ts">
 import Header from '../components/Header.vue';
-import SmokeCanvas from '../SmokeCanvas.vue';
 import SpaceScene from '../SpaceScene.vue';
-
+import type {Section} from '../types/activeSectionTypes';
 
 defineProps<{
-  activeSection: string;
+  activeSection: Section;
 }>();
 
 const emit = defineEmits<{
-  (event: 'setActiveSection', section: string): void;
+  (event: 'setActiveSection', section: Section): void;
 }>();
 
-const handleSetActiveSection = (section: string) => {
+const handleSetActiveSection = (section: Section) => {
   emit('setActiveSection', section);
 }
 
@@ -41,5 +39,4 @@ const handleSetActiveSection = (section: string) => {
   max-height: 100vh;
   max-width: 100vw;
 }
-
 </style>

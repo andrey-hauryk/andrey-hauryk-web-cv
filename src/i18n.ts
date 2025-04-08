@@ -1,23 +1,11 @@
 import { createI18n } from 'vue-i18n';
-import type { I18n } from 'vue-i18n';
-import Experience from './views/Experience.vue';
 
-
-interface Messages {
-  en: {
-    message: Record<string, string>;
-  };
-  ru: {
-    message: Record<string, string>;
-  };
-}
-
-const messages: Messages = {
+const messages = {
   en: {
     message: {
       portfolio: 'Portfolio',
       experience: 'Experience',
-      projects: 'Projects'
+      projects: 'Projects',
     },
   },
   ru: {
@@ -29,7 +17,10 @@ const messages: Messages = {
   },
 };
 
-const i18n: I18n = createI18n({
+
+const i18n = createI18n<{
+  message: Record<string, string>;
+}>({
   locale: 'en',
   legacy: false,
   messages,

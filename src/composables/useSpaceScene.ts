@@ -2,8 +2,7 @@ import { onMounted } from 'vue';
 import type { Ref } from 'vue';
 import * as THREE from 'three';
 import { useBaseUrl } from './useBaseUrl';
-import { ref } from 'vue';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 export function useSpaceScene(spaceScene: Ref<HTMLDivElement | null>) {
   const { getAssetPath } = useBaseUrl();
@@ -19,24 +18,24 @@ export function useSpaceScene(spaceScene: Ref<HTMLDivElement | null>) {
   }[] = [];
   
 
-  const colors = ref({
-    violet: '#6A0DAD',
-    blue: '#0000FF',
-    blueCyan: '#1E90FF',
-    blueViolet: '#8A2BE2',
-    paleOrangeViolet: '#D8A0D7',
+  // const colors = ref({
+  //   violet: '#6A0DAD',
+  //   blue: '#0000FF',
+  //   blueCyan: '#1E90FF',
+  //   blueViolet: '#8A2BE2',
+  //   paleOrangeViolet: '#D8A0D7',
 
-    neonPurple: '#B026FF',       // яркий неоновый фиолетовый
-    neonBlue: '#00F0FF',         // голубовато-неоновый
-    electricViolet: '#8F00FF',   // насыщенный светящийся фиолетовый
-    deepSpaceBlue: '#1A1AFF',    // глубокий синий с эффектом свечения
-    plasmaPink: '#FF6EC7',       // розово-фиолетовый (перелив)
-    auroraTeal: '#00FFC6',       // светящийся бирюзовый
-    cosmicIndigo: '#4B0082',     // насыщенный индиго
-    galaxyGlow: '#CBA0FF',       // бледный неон с сиреневым отливом
-    ultraviolet: '#9400D3',      // глубокий ультрафиолет
-    nebulaPink: '#FF77FF', 
-  });
+  //   neonPurple: '#B026FF',       // яркий неоновый фиолетовый
+  //   neonBlue: '#00F0FF',         // голубовато-неоновый
+  //   electricViolet: '#8F00FF',   // насыщенный светящийся фиолетовый
+  //   deepSpaceBlue: '#1A1AFF',    // глубокий синий с эффектом свечения
+  //   plasmaPink: '#FF6EC7',       // розово-фиолетовый (перелив)
+  //   auroraTeal: '#00FFC6',       // светящийся бирюзовый
+  //   cosmicIndigo: '#4B0082',     // насыщенный индиго
+  //   galaxyGlow: '#CBA0FF',       // бледный неон с сиреневым отливом
+  //   ultraviolet: '#9400D3',      // глубокий ультрафиолет
+  //   nebulaPink: '#FF77FF', 
+  // });
 
   let renderer: THREE.WebGLRenderer;
   let scene: THREE.Scene;
@@ -135,56 +134,56 @@ export function useSpaceScene(spaceScene: Ref<HTMLDivElement | null>) {
     }
   };
 
-  const createComplexSmokeCloud = (
-    textureNames: string[],
-    basePosition: THREE.Vector3,
-    scaleRange: [number, number] = [200, 400],
-    opacityRange: [number, number] = [0.2, 0.5],
-    count: number = 6,
-    spread: THREE.Vector3 = new THREE.Vector3(1009, 600, 400),
-    stretch: THREE.Vector3 = new THREE.Vector3(1.6, 1, 1),
-    color: string | number = 0xffffff,
-  ) => {
-    for (let i = 0; i < count; i++) {
-      const texturePath = textureNames[Math.floor(Math.random() * textureNames.length)];
-      const texture = new THREE.TextureLoader().load(getAssetPath(texturePath));
+  // const createComplexSmokeCloud = (
+  //   textureNames: string[],
+  //   basePosition: THREE.Vector3,
+  //   scaleRange: [number, number] = [200, 400],
+  //   opacityRange: [number, number] = [0.2, 0.5],
+  //   count: number = 6,
+  //   spread: THREE.Vector3 = new THREE.Vector3(1009, 600, 400),
+  //   stretch: THREE.Vector3 = new THREE.Vector3(1.6, 1, 1),
+  //   color: string | number = 0xffffff,
+  // ) => {
+  //   for (let i = 0; i < count; i++) {
+  //     const texturePath = textureNames[Math.floor(Math.random() * textureNames.length)];
+  //     const texture = new THREE.TextureLoader().load(getAssetPath(texturePath));
   
-      const material = new THREE.SpriteMaterial({
-        map: texture,
-        color: color,
-        transparent: true,
-        opacity: THREE.MathUtils.randFloat(opacityRange[0], opacityRange[1]),
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      });
+  //     const material = new THREE.SpriteMaterial({
+  //       map: texture,
+  //       color: color,
+  //       transparent: true,
+  //       opacity: THREE.MathUtils.randFloat(opacityRange[0], opacityRange[1]),
+  //       depthWrite: false,
+  //       blending: THREE.AdditiveBlending,
+  //     });
   
-      const sprite = new THREE.Sprite(material);
+  //     const sprite = new THREE.Sprite(material);
   
-      const offset = new THREE.Vector3(
-        THREE.MathUtils.randFloatSpread(spread.x * (Math.random() > 0.5 ? 1 : 2)),
-        THREE.MathUtils.randFloatSpread(spread.y * (Math.random() > 0.5 ? 1 : 2)),
-        THREE.MathUtils.randFloatSpread(spread.z * (Math.random() > 0.5 ? 1 : 2))
-      );
+  //     const offset = new THREE.Vector3(
+  //       THREE.MathUtils.randFloatSpread(spread.x * (Math.random() > 0.5 ? 1 : 2)),
+  //       THREE.MathUtils.randFloatSpread(spread.y * (Math.random() > 0.5 ? 1 : 2)),
+  //       THREE.MathUtils.randFloatSpread(spread.z * (Math.random() > 0.5 ? 1 : 2))
+  //     );
   
-      sprite.position.copy(basePosition.clone().add(offset));
+  //     sprite.position.copy(basePosition.clone().add(offset));
   
-      const baseScale = THREE.MathUtils.randFloat(scaleRange[0], scaleRange[1]);
-      sprite.scale.set(
-        baseScale * stretch.x,
-        baseScale * stretch.y,
-        baseScale * stretch.z
-      );
+  //     const baseScale = THREE.MathUtils.randFloat(scaleRange[0], scaleRange[1]);
+  //     sprite.scale.set(
+  //       baseScale * stretch.x,
+  //       baseScale * stretch.y,
+  //       baseScale * stretch.z
+  //     );
   
-      scene.add(sprite);
+  //     scene.add(sprite);
   
-      const rotationSpeed = THREE.MathUtils.randFloat(0.0005, 0.002);
-      const update = () => {
-        material.rotation += rotationSpeed;
-        requestAnimationFrame(update);
-      };
-      update();
-    }
-  };  
+  //     const rotationSpeed = THREE.MathUtils.randFloat(0.0005, 0.002);
+  //     const update = () => {
+  //       material.rotation += rotationSpeed;
+  //       requestAnimationFrame(update);
+  //     };
+  //     update();
+  //   }
+  // };  
 
   const animate = () => {
     requestAnimationFrame(animate);

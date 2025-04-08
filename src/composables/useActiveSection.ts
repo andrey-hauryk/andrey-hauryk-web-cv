@@ -1,12 +1,10 @@
 import { ref } from 'vue';
-// import { UseActiveSection, Section } from '../types/activeSectionTypes';
-
-type Section = 'portfolio' | 'experience' | 'projects';
+import type { Section } from '../types/activeSectionTypes';
 
 export function useActiveSection() {
   const activeSection = ref<Section>('projects');
 
-  const setActiveSection = (section: Section) => {
+  const setActiveSection = (section: Section): void => {
     activeSection.value = section;
   };
 

@@ -15,7 +15,6 @@ interface Project {
   name: string;
   description: string;
   link: string;
-  image: string;
 }
 
 defineProps<{
@@ -26,8 +25,8 @@ defineProps<{
 <style scoped lang="scss">
 .project-card {
   display: flex;
-  background-color: #f5f5f5; /* Светлый фон для карточки */
-  color: #333; /* Темный текст */
+  background-color: #f5f5f5;
+  color: #333;
   padding: 1.5rem;
   border-radius: 12px;
   width: 100%;
@@ -39,13 +38,13 @@ defineProps<{
 }
 
 .project-card:hover {
-  transform: translateY(-10px); /* Плавное поднятие карточки */
+  transform: translateY(-10px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .card-content {
   flex: 1;
-  padding-right: 2rem; /* Отступ справа от текста, чтобы картинка не заезжала на текст */
+  padding-right: 2rem;
 }
 
 .project-card h2 {
@@ -81,8 +80,8 @@ defineProps<{
 }
 
 .project-image {
-  width: 150px; /* Фиксированная ширина для картинки */
-  height: 150px; /* Фиксированная высота для картинки */
+  width: 150px;
+  height: 150px;
   overflow: hidden;
   border-radius: 8px;
   position: absolute;

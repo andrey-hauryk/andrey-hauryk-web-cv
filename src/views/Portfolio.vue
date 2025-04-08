@@ -19,7 +19,7 @@ import SectionLayout from '../layouts/SectionLayout.vue';
 <style scoped lang="scss">
 @use 'sass:math';
 
-@mixin fadeInUp($duration: 1.5s, $delay: 0s) {
+@mixin fadeInUp($duration: 0.3s, $delay: 0s) {
   opacity: 0;
   animation: fadeInUp $duration ease-in-out $delay forwards;
 }

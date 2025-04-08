@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import "./styles.css"
 import VueLazyload from 'vue-lazyload';
 import i18n from './i18n';
 import router from './router';

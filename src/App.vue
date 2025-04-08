@@ -11,28 +11,29 @@
 
 <script setup lang="ts">
 import PageLayout from './layouts/PageLayout.vue';
-import Home from './views/Home.vue';
+import Portfolio from './views/Portfolio.vue';
 import Projects from './views/Projects.vue';
 import Experience from './views/Experience.vue';
 import { useActiveSection } from './composables/useActiveSection';
+import type {Section} from './types/activeSectionTypes';
 import {computed} from 'vue'
 
 const { activeSection, setActiveSection } = useActiveSection();
 
-const handleSetActiveSection = (section: string) : void => {
+const handleSetActiveSection = (section: Section) : void => {
   setActiveSection(section)
 }
 
 const activeComponent = computed(() => {
   switch (activeSection.value) {
     case 'portfolio':
-      return Home;
+      return Portfolio;
     case 'experience':
       return Experience;
     case 'projects':
       return Projects;
     default:
-      return Home;
+      return Portfolio;
   }
 });
 </script>
